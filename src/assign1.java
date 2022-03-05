@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class assign1 {
 	private static int[] random(int min,int max,int size) {
@@ -11,7 +12,8 @@ public class assign1 {
 		return arr;
 	} 
 	
-	private static int[] insertionSort(int[] arr) {
+
+	private static int[] insertionSort(int[] arr,AtomicInteger swap) {
 		int[] myarr = arr.clone();
 		if(myarr.length < 2) {
 			return myarr;
@@ -21,34 +23,39 @@ public class assign1 {
 		   int j = i-1;
 		   while(j>=0 && target < myarr[j]){
 			   myarr[j+1] = myarr[j];
+			   swap.incrementAndGet();
 			   j--;
 		   }
 		   myarr[j+1] = target;
+		   swap.incrementAndGet();
 		}
+
 		return myarr;
 	}
 	
-	private static int[] heapSort(int[] arr) {
+	private static int[] heapSort(int[] arr,AtomicInteger counter) {
 		int[] myarr = arr.clone();
-		heapSortCore(myarr);
+		heapSortCore(myarr,counter);
+	 
 		return myarr;
 	}
 	
-	private static void heapSortCore(int[] arr) {
+	private static void heapSortCore(int[] arr,AtomicInteger counter) {
 		int size = arr.length;
-		for (int i = size / 2 - 1; i >=0; i--) {
-			 heapify(arr, size, i);
-		}
 		
+		for (int i = size / 2 - 1; i >=0; i--) {
+			 heapify(arr, size, i,counter);
+		}
 		for(int i= size-1;i>0;i--) {
 			int max = arr[0];
 			arr[0] = arr[i];
 			arr[i] = max;
-			heapify(arr,i,0);
+			heapify(arr,i,0,counter);
 		}
+		
 	}
 	
-	private static void heapify(int[] arr,int size,int i){
+	private static void heapify(int[] arr,int size,int i,AtomicInteger counter){
 		if(2*i+1 > size-1) {
 			return;
 		}
@@ -58,7 +65,6 @@ public class assign1 {
 	    if (l < size && arr[l] > arr[max])
             max = l;
  
-        // If right child is larger than largest so far
         if (r < size && arr[r] > arr[max])
             max = r;
         
@@ -66,7 +72,8 @@ public class assign1 {
             int swap = arr[i];
             arr[i] = arr[max];
             arr[max] = swap;
-            heapify(arr, size, max);
+            counter.incrementAndGet();
+            heapify(arr, size, max,counter);
         }
 	}
 	
@@ -138,16 +145,60 @@ public class assign1 {
 			}
 		}
 	}
+	
+	private static void testInsert(int times,int[] arr) {
+		System.out.println("Measurment of insertion sort");
+		long start = System.currentTimeMillis();
+		AtomicInteger counter = new AtomicInteger(0);
+		for(int i=0;i<times;i++) {
+		
+			insertionSort(arr,counter);
+			if(i == 0) {
+				System.out.println("Number of swapping: "+counter);
+			}
+			
+		}
+		long finish = System.currentTimeMillis();
+		long timeElapsed = finish - start;
+		System.out.println("InsertionSort Clock timeElapsed: "+timeElapsed);
+		System.out.println("Average: Clock time "+timeElapsed/times);
+	} 
+	
+	
+	private static void testHeapSort(int times,int[] arr) {
+		System.out.println("Measurment of Heap sort");
+		long start = System.currentTimeMillis();
+		AtomicInteger counter = new AtomicInteger(0);
+		for(int i=0;i<times;i++) {
+		
+			heapSort(arr,counter);
+			if(i == 0) {
+				System.out.println("Number of swapping: "+counter);
+			}
+			
+		}
+		long finish = System.currentTimeMillis();
+		long timeElapsed = finish - start;
+		System.out.println("HeapSort Clock timeElapsed: "+timeElapsed);
+		System.out.println("Average: Clock time "+timeElapsed/times);
+	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		final int[] test = random(1,100,20);
+		final int[] test = random(1,1000000,10000);
 		
-		System.out.println("InsertionSort: "+Arrays.toString(insertionSort(test)));
+		
+		//System.out.println("InsertionSort: "+Arrays.toString(insertionSort(test,new AtomicInteger(0))));
+		
+		testInsert(100,test);
+		testHeapSort(100,test);
+		/*
 		System.out.println("MergeSort: "+Arrays.toString(mergeSort(test)));
 		System.out.println("QuickSort: "+Arrays.toString(quickSort(test)));
 		System.out.println("HeapSort: "+Arrays.toString(heapSort(test)));
-		System.out.println("Heap == Quick: "+Arrays.equals(quickSort(test),heapSort(test)));
+		System.out.println(System.currentTimeMillis());
+		*/
+		//System.out.println("Heap == Quick: "+Arrays.equals(quickSort(test),heapSort(test)));
 	}
 
 }
