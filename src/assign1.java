@@ -14,7 +14,7 @@ public class assign1 {
 	} 
 	
 
-	private static int[] insertionSort(int[] arr,AtomicInteger swap,AtomicInteger compare) {
+	private static int[] insertionSort(int[] arr,AtomicLong swap,AtomicLong compare) {
 		int[] myarr = arr.clone();
 		if(myarr.length < 2) {
 			return myarr;
@@ -35,14 +35,14 @@ public class assign1 {
 		return myarr;
 	}
 	
-	private static int[] heapSort(int[] arr,AtomicInteger counter,AtomicInteger compare) {
+	private static int[] heapSort(int[] arr,AtomicLong counter,AtomicLong compare) {
 		int[] myarr = arr.clone();
 		heapSortCore(myarr,counter,compare);
 	 
 		return myarr;
 	}
 	
-	private static void heapSortCore(int[] arr,AtomicInteger counter,AtomicInteger compare) {
+	private static void heapSortCore(int[] arr,AtomicLong counter,AtomicLong compare) {
 		int size = arr.length;
 		
 		for (int i = size / 2 - 1; i >=0; i--) {
@@ -57,7 +57,7 @@ public class assign1 {
 		
 	}
 	
-	private static void heapify(int[] arr,int size,int i,AtomicInteger counter,AtomicInteger compare){
+	private static void heapify(int[] arr,int size,int i,AtomicLong counter,AtomicLong compare){
 		if(2*i+1 > size-1) {
 			return;
 		}
@@ -83,27 +83,43 @@ public class assign1 {
         }
 	}
 	
-	private static int[] quickSort(int[] arr,AtomicInteger counter,AtomicInteger compare) {
+	private static int[] quickSort(int[] arr,AtomicLong counter,AtomicLong compare) {
 		int[] myarr = arr.clone();
 		quickSortCore(myarr,0,myarr.length-1,counter,compare);
 		return myarr;
 	}
 	
-	private static void quickSortCore(int[] arr,int start,int end,AtomicInteger counter,AtomicInteger compare) {
-		if(start > end) {
+	private static void quickSortCore(int[] arr,int start,int end,AtomicLong counter,AtomicLong compare) {
+	
+		if(end > start) {
 			compare.incrementAndGet();
-			return; //sorted
-		}
-	    if(end > start) {
 	    	int part = partition(arr,start,end,counter,compare);
-	    	quickSortCore(arr,start,part-1,counter,compare);
+	    	quickSortCore(arr,start,part,counter,compare);
 	    	quickSortCore(arr,part+1,end,counter,compare);
 	    }
 		 
 	}
 	
-	private static int partition(int[] arr,int start,int end,AtomicInteger counter,AtomicInteger compare) {
-		int pivot = arr[end];
+	private static int partition(int[] arr,int start,int end,AtomicLong counter,AtomicLong compare) {
+		int i = (start-1);
+		int j = end+1;
+		int k = arr[start];
+		
+		while(true) {
+			while(++i < end && arr[i] <k)
+				compare.incrementAndGet();
+			while(--j > start && arr[j] > k)
+				compare.incrementAndGet();
+			if(i < j) {
+				int temp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = temp;
+				counter.incrementAndGet();
+			}else {
+				return j;
+			}
+		}
+		/*int pivot = arr[end];
 		int i = (start-1);
 		for(int j=start;j<=end-1;j++) {
 			if(arr[j] < pivot) {
@@ -119,18 +135,18 @@ public class assign1 {
 		arr[i+1] = arr[end];
 		arr[end] = temp;
 		counter.incrementAndGet();
-		return (i+1);
+		return (i+1);*/
 	}
 	
 	
 	
-	private static int[] mergeSort(int[] arr,AtomicInteger counter,AtomicInteger compare,AtomicInteger tempA) {
+	private static int[] mergeSort(int[] arr,AtomicLong counter,AtomicLong compare,AtomicLong tempA) {
 		int[] myarr = arr.clone();
 		mergeSortCore(myarr,counter,compare,tempA);
 		return myarr;
 	}
 	
-	private static void mergeSortCore(int[] arr,AtomicInteger counter,AtomicInteger compare,AtomicInteger tempA) {
+	private static void mergeSortCore(int[] arr,AtomicLong counter,AtomicLong compare,AtomicLong tempA) {
 		int size = arr.length;
 		if(size<2) {return;}
 		int mid = size /2;
@@ -143,7 +159,7 @@ public class assign1 {
 		
 	} 
 	
-	private static void merge(int[] left,int[] right,int[] main,AtomicInteger counter,AtomicInteger compare) {
+	private static void merge(int[] left,int[] right,int[] main,AtomicLong counter,AtomicLong compare) {
 		int i=0;
 		int j =0;
 		while(i+j < main.length) {
@@ -164,10 +180,11 @@ public class assign1 {
 		long counterSum = 0;
 		long compareSum = 0;
 		double start = System.currentTimeMillis();
-		AtomicInteger counter = new AtomicInteger(0);
-		AtomicInteger compare = new AtomicInteger(0);
+		AtomicLong counter;
+		AtomicLong compare;
 		for(int i=0;i<times;i++) {
-		
+			counter = new AtomicLong(0);
+			compare = new AtomicLong(0);
 			insertionSort(arr[i],counter,compare);
 			counterSum += counter.longValue();
 			compareSum += compare.longValue();
@@ -186,10 +203,11 @@ public class assign1 {
 		long counterSum = 0;
 		long compareSum = 0;
 		double start = System.currentTimeMillis();
-		AtomicInteger counter = new AtomicInteger(0);
-		AtomicInteger compare = new AtomicInteger(0);
+		AtomicLong counter;
+		AtomicLong compare;
 		for(int i=0;i<times;i++) {
-		
+			counter = new AtomicLong(0);
+			compare = new AtomicLong(0);
 			heapSort(arr[i],counter,compare);
 			counterSum += counter.longValue();
 			compareSum += compare.longValue();
@@ -208,10 +226,11 @@ public class assign1 {
 		long counterSum = 0;
 		long compareSum = 0;
 		double start = System.currentTimeMillis();
-		AtomicInteger counter = new AtomicInteger(0);
-		AtomicInteger compare = new AtomicInteger(0);
+		AtomicLong counter;
+		AtomicLong compare;
 		for(int i=0;i<times;i++) {
-		
+		    counter = new AtomicLong(0);
+		    compare = new AtomicLong(0);
 			quickSort(arr[i],counter,compare);
 			counterSum += counter.longValue();
 			compareSum += compare.longValue();
@@ -232,14 +251,14 @@ public class assign1 {
 		long compareSum = 0;
 		long tempASum = 0;
 		
-		AtomicInteger counter;
-		AtomicInteger compare;
-		AtomicInteger tempA;
+		AtomicLong counter;
+		AtomicLong compare;
+		AtomicLong tempA;
 		double start = System.currentTimeMillis();
 		for(int i=0;i<times;i++) {
-		    counter = new AtomicInteger(0);
-			compare = new AtomicInteger(0);
-			tempA = new AtomicInteger(0);
+		    counter = new AtomicLong(0);
+			compare = new AtomicLong(0);
+			tempA = new AtomicLong(0);
 			mergeSort(arr[i],counter,compare, tempA);
 			counterSum += counter.longValue();
 			compareSum += compare.longValue();
@@ -259,41 +278,55 @@ public class assign1 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		//final int[] test = random(1,1000000,10000);
 		
 		final int[][] test1 = new int[100][10000];
 		for(int i = 0;i<test1.length;i++) {
 			test1[i] = random(1,1000000,10000);
 		}
+		 
 		
+	    int[] test =  random(1,100,20);
+	    System.out.println(Arrays.toString(quickSort(test,new AtomicLong(0),new AtomicLong(0))));
+	    System.out.println(Arrays.toString(insertionSort(test,new AtomicLong(0),new AtomicLong(0))));
+	    System.out.println(Arrays.toString(mergeSort(test,new AtomicLong(0),new AtomicLong(0),new AtomicLong(0))));
+	    System.out.println(Arrays.toString(heapSort(test,new AtomicLong(0),new AtomicLong(0))));
 	
 		
 		
 		//part 1
-		
+	  /*
 		testHeapSort(100,test1);
 		testQuickSort(100,test1);
 	    testMergeSort(100,test1);
 		testInsert(100,test1);
 
-		
+		*/
 		//part 2
 		
+	
+	/*
 		final int[][] test2 = new int[100][100000];
 		for(int i = 0;i<test1.length;i++) {
 			test1[i] = random(1,1000000,100000);
 		}
 		
 		testInsert(100,test2);
+		testQuickSort(100,test2);
 		testHeapSort(100,test2);
 		testMergeSort(100,test2);
-		testQuickSort(100,test2);
-		
+
+		*/
 		
 		/*int[] insert = insertionSort(test,new AtomicInteger(0),new AtomicInteger(0));
 		int[] quick = quickSort(test,new AtomicInteger(0),new AtomicInteger(0));
 		int[] merge = mergeSort(test,new AtomicInteger(0),new AtomicInteger(0),new AtomicInteger(0));
 		System.out.println(Arrays.equals(quick,merge));*/
+
+		final int[][] test16 = new int[100][16];
+		final int[][] test32 = new int[100][32];
+		final int[][] test64 = new int[100][64];
+		final int[][] test128 = new int[100][128];
+		final int[][] test256 = new int[100][256];
 		
 	}
 
