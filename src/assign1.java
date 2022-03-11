@@ -175,11 +175,21 @@ public class assign1 {
 		}
 	}
 	
-	private static void testInsert(int times,int[][] arr) {
+	private static void testInsert(int times,int[][] arr,int control) {
 		System.out.println("Measurment of insertion sort");
 		long counterSum = 0;
 		long compareSum = 0;
-		double start = System.currentTimeMillis();
+		double start=0;
+		double finish=0;
+		switch(control) {
+		  case 0:
+			  start = System.currentTimeMillis();
+		      break;
+		  case 1:
+			  start = System.nanoTime();
+		      break;
+		}
+		
 		AtomicLong counter;
 		AtomicLong compare;
 		for(int i=0;i<times;i++) {
@@ -189,20 +199,37 @@ public class assign1 {
 			counterSum += counter.longValue();
 			compareSum += compare.longValue();
 		}
-		double finish = System.currentTimeMillis();
+		switch(control) {
+		  case 0:
+			  finish = System.currentTimeMillis();
+		      break;
+		  case 1:
+			  finish = System.nanoTime();
+		      break;
+		}
+		
 		double timeElapsed = finish - start;
-		System.out.println("Selection Sort comparison: "+compareSum/times);
-		System.out.println("Selection Sort swapping: "+counterSum/times);
+		System.out.println("Selection Sort average comparison: "+compareSum/times);
+		System.out.println("Selection Sort average swapping: "+counterSum/times);
 		System.out.println("InsertionSort Clock timeElapsed: "+timeElapsed+" ms");
 		System.out.println("Average: Clock time "+timeElapsed/times+" ms"+"\n");
 	} 
 	
 	
-	private static void testHeapSort(int times,int[][] arr) {
+	private static void testHeapSort(int times,int[][] arr,int control) {
 		System.out.println("Measurment of Heap sort");
 		long counterSum = 0;
 		long compareSum = 0;
-		double start = System.currentTimeMillis();
+		double start=0;
+		double finish=0;
+		switch(control) {
+		  case 0:
+			  start = System.currentTimeMillis();
+		      break;
+		  case 1:
+			  start = System.nanoTime();
+		      break;
+		}
 		AtomicLong counter;
 		AtomicLong compare;
 		for(int i=0;i<times;i++) {
@@ -213,19 +240,35 @@ public class assign1 {
 			compareSum += compare.longValue();
 			
 		}
-		double finish = System.currentTimeMillis();
+		switch(control) {
+		  case 0:
+			  finish = System.currentTimeMillis();
+		      break;
+		  case 1:
+			  finish = System.nanoTime();
+		      break;
+		}
 		double timeElapsed = finish - start;
-		System.out.println("Heap Sort comparison: "+compareSum/times);
-		System.out.println("Heap Sort swapping: "+counterSum/times);
+		System.out.println("Heap Sort average comparison: "+compareSum/times);
+		System.out.println("Heap Sort average swapping: "+counterSum/times);
 		System.out.println("HeapSort Clock timeElapsed: "+timeElapsed+" ms");
 		System.out.println("Average: Clock time "+timeElapsed/times+" ms"+"\n");
 	}
 	
-	private static void testQuickSort(int times,int[][] arr) {
+	private static void testQuickSort(int times,int[][] arr,int control) {
 		System.out.println("Measurment of Quicksort");
 		long counterSum = 0;
 		long compareSum = 0;
-		double start = System.currentTimeMillis();
+		double start=0;
+		double finish=0;
+		switch(control) {
+		  case 0:
+			  start = System.currentTimeMillis();
+		      break;
+		  case 1:
+			  start = System.nanoTime();
+		      break;
+		}
 		AtomicLong counter;
 		AtomicLong compare;
 		for(int i=0;i<times;i++) {
@@ -236,16 +279,24 @@ public class assign1 {
 			compareSum += compare.longValue();
 			
 		}
-		double finish = System.currentTimeMillis();
+		switch(control) {
+		  case 0:
+			  finish = System.currentTimeMillis();
+		      break;
+		  case 1:
+			  finish = System.nanoTime();
+		      break;
+		}
+		
 		double timeElapsed = finish - start;
-		System.out.println("Quick Sort comparison: "+compareSum/times);
-		System.out.println("Quick Sort swapping: "+counterSum/times);
+		System.out.println("Quick Sort average comparison: "+compareSum/times);
+		System.out.println("Quick Sort average swapping: "+counterSum/times);
 		System.out.println("HeapSort Clock timeElapsed: "+timeElapsed+" ms");
 		System.out.println("Average: Clock time "+timeElapsed/times+" ms"+"\n");
 		
 	}
 	
-	private static void testMergeSort(int times,int[][] arr) {
+	private static void testMergeSort(int times,int[][] arr,int control) {
 		System.out.println("Measurment of MergeSort");
 		long counterSum = 0;
 		long compareSum = 0;
@@ -254,7 +305,16 @@ public class assign1 {
 		AtomicLong counter;
 		AtomicLong compare;
 		AtomicLong tempA;
-		double start = System.currentTimeMillis();
+		double start=0;
+		double finish=0;
+		switch(control) {
+		  case 0:
+			  start = System.currentTimeMillis();
+		      break;
+		  case 1:
+			  start = System.nanoTime();
+		      break;
+		}
 		for(int i=0;i<times;i++) {
 		    counter = new AtomicLong(0);
 			compare = new AtomicLong(0);
@@ -264,10 +324,17 @@ public class assign1 {
 			compareSum += compare.longValue();
 			tempASum += tempA.longValue();
 		}
-		double finish = System.currentTimeMillis();
+		switch(control) {
+		  case 0:
+			  finish = System.currentTimeMillis();
+		      break;
+		  case 1:
+			  finish = System.nanoTime();
+		      break;
+		}
 		double timeElapsed = finish - start;
-		System.out.println("Merge Sort comparison: "+compareSum/times);
-		System.out.println("Merge Sort swapping: "+counterSum/times);
+		System.out.println("Merge Sort average comparison: "+compareSum/times);
+		System.out.println("Merge Sort average swapping: "+counterSum/times);
 		System.out.println("Merge Sort temp array: "+tempASum/times);
 		System.out.println("Merge Sort Clock timeElapsed: "+timeElapsed+" ms");
 		System.out.println("Average: Clock time "+timeElapsed/times+" ms"+"\n");
@@ -284,50 +351,112 @@ public class assign1 {
 			test1[i] = random(1,1000000,10000);
 		}
 		 
-		
+		/*
 	    int[] test =  random(1,100,20);
 	    System.out.println(Arrays.toString(quickSort(test,new AtomicLong(0),new AtomicLong(0))));
 	    System.out.println(Arrays.toString(insertionSort(test,new AtomicLong(0),new AtomicLong(0))));
 	    System.out.println(Arrays.toString(mergeSort(test,new AtomicLong(0),new AtomicLong(0),new AtomicLong(0))));
 	    System.out.println(Arrays.toString(heapSort(test,new AtomicLong(0),new AtomicLong(0))));
+	    System.out.println(Arrays.toString(test));
 	
-		
+		*/
 		
 		//part 1
-	  /*
-		testHeapSort(100,test1);
-		testQuickSort(100,test1);
-	    testMergeSort(100,test1);
-		testInsert(100,test1);
-
-		*/
+	/*
+		testHeapSort(100,test1,0);
+		testQuickSort(100,test1,0);
+	    testMergeSort(100,test1,0);
+		testInsert(100,test1,0);
+*/
+	
 		//part 2
 		
 	
-	/*
+	
 		final int[][] test2 = new int[100][100000];
 		for(int i = 0;i<test1.length;i++) {
-			test1[i] = random(1,1000000,100000);
+			test2[i] = random(1,1000000,100000);
 		}
 		
-		testInsert(100,test2);
-		testQuickSort(100,test2);
-		testHeapSort(100,test2);
-		testMergeSort(100,test2);
+		testQuickSort(100,test2,0);
+		testHeapSort(100,test2,0);
+		testMergeSort(100,test2,0);
+		testInsert(100,test2,0);
 
-		*/
+	
 		
-		/*int[] insert = insertionSort(test,new AtomicInteger(0),new AtomicInteger(0));
-		int[] quick = quickSort(test,new AtomicInteger(0),new AtomicInteger(0));
-		int[] merge = mergeSort(test,new AtomicInteger(0),new AtomicInteger(0),new AtomicInteger(0));
-		System.out.println(Arrays.equals(quick,merge));*/
+		//part2b 
+		/*
+		int[] testOne = test2[0]; 
+		System.out.println(Arrays.toString(testOne));
+		int[] insert = insertionSort(testOne,new AtomicLong(0),new AtomicLong(0));
+		System.out.println(Arrays.equals(insert,testOne));
+		int[] quick = quickSort(insert,new AtomicLong(0),new AtomicLong(0));
+		int[] merge = mergeSort(insert,new AtomicLong(0),new AtomicLong(0),new AtomicLong(0));
+		//System.out.println(Arrays.equals(quick,merge));*/
 
+		
+		
+		//part 3
+		
+		/*
 		final int[][] test16 = new int[100][16];
-		final int[][] test32 = new int[100][32];
-		final int[][] test64 = new int[100][64];
-		final int[][] test128 = new int[100][128];
-		final int[][] test256 = new int[100][256];
+		for(int i = 0;i<test16.length;i++) {
+			test16[i] = random(1,1000,16);
+		}
 		
+		testHeapSort(100,test16,1);
+		testQuickSort(100,test16,1);
+	    testMergeSort(100,test16,1);
+		testInsert(100,test16,1);
+		
+		System.out.println("----Results of 16 elements-----------------");
+		
+		final int[][] test32 = new int[100][32];
+		for(int i = 0;i<test32.length;i++) {
+			test32[i] = random(1,1000,32);
+		}
+		
+		testHeapSort(100,test32,1);
+		testQuickSort(100,test32,1);
+	    testMergeSort(100,test32,1);
+		testInsert(100,test32,1);
+		
+		System.out.println("----Results of 32 elements-----------------");
+		
+		final int[][] test64 = new int[100][64];
+		for(int i = 0;i<test64.length;i++) {
+			test64[i] = random(1,1000,64);
+		}
+		testHeapSort(100,test64,1);
+		testQuickSort(100,test64,1);
+	    testMergeSort(100,test64,1);
+		testInsert(100,test64,1);
+		System.out.println("----Results of 64 elements-----------------");
+		
+		final int[][] test128 = new int[100][128];
+		for(int i = 0;i<test128.length;i++) {
+			test128[i] = random(1,1000,128);
+		}
+	
+		testHeapSort(100,test128,1);
+		testQuickSort(100,test128,1);
+	    testMergeSort(100,test128,1);
+		testInsert(100,test128,1);
+		
+		System.out.println("----Results of 128 elements-----------------");
+		final int[][] test256 = new int[100][256];
+		for(int i = 0;i<test256.length;i++) {
+			test256[i] = random(1,1000,256);
+		}
+		
+		testHeapSort(100,test256,1);
+		testQuickSort(100,test256,1);
+	    testMergeSort(100,test256,1);
+		testInsert(100,test256,1);
+		
+		System.out.println("----Results of 256 elements-----------------");
+		*/
 	}
 
 }
