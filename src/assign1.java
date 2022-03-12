@@ -211,8 +211,15 @@ public class assign1 {
 		double timeElapsed = finish - start;
 		System.out.println("Selection Sort average comparison: "+compareSum/times);
 		System.out.println("Selection Sort average swapping: "+counterSum/times);
-		System.out.println("InsertionSort Clock timeElapsed: "+timeElapsed+" ms");
-		System.out.println("Average: Clock time "+timeElapsed/times+" ms"+"\n");
+		switch(control) {
+		  case 0:
+			  System.out.println("Merge Sort Clock timeElapsed: "+timeElapsed+" ms");
+			  System.out.println("Average: Clock time "+timeElapsed/times+" ms"+"\n");
+		      break;
+		  case 1:
+			  System.out.println("Merge Sort Clock timeElapsed: "+timeElapsed+" ns");
+			  System.out.println("Average: Clock time "+timeElapsed/times+" ns"+"\n");
+		}
 	} 
 	
 	
@@ -251,8 +258,15 @@ public class assign1 {
 		double timeElapsed = finish - start;
 		System.out.println("Heap Sort average comparison: "+compareSum/times);
 		System.out.println("Heap Sort average swapping: "+counterSum/times);
-		System.out.println("HeapSort Clock timeElapsed: "+timeElapsed+" ms");
-		System.out.println("Average: Clock time "+timeElapsed/times+" ms"+"\n");
+		switch(control) {
+		  case 0:
+			  System.out.println("Merge Sort Clock timeElapsed: "+timeElapsed+" ms");
+			  System.out.println("Average: Clock time "+timeElapsed/times+" ms"+"\n");
+		      break;
+		  case 1:
+			  System.out.println("Merge Sort Clock timeElapsed: "+timeElapsed+" ns");
+			  System.out.println("Average: Clock time "+timeElapsed/times+" ns"+"\n");
+		}
 	}
 	
 	private static void testQuickSort(int times,int[][] arr,int control) {
@@ -291,8 +305,15 @@ public class assign1 {
 		double timeElapsed = finish - start;
 		System.out.println("Quick Sort average comparison: "+compareSum/times);
 		System.out.println("Quick Sort average swapping: "+counterSum/times);
-		System.out.println("HeapSort Clock timeElapsed: "+timeElapsed+" ms");
-		System.out.println("Average: Clock time "+timeElapsed/times+" ms"+"\n");
+		switch(control) {
+		  case 0:
+			  System.out.println("Merge Sort Clock timeElapsed: "+timeElapsed+" ms");
+			  System.out.println("Average: Clock time "+timeElapsed/times+" ms"+"\n");
+		      break;
+		  case 1:
+			  System.out.println("Merge Sort Clock timeElapsed: "+timeElapsed+" ns");
+			  System.out.println("Average: Clock time "+timeElapsed/times+" ns"+"\n");
+		}
 		
 	}
 	
@@ -336,8 +357,15 @@ public class assign1 {
 		System.out.println("Merge Sort average comparison: "+compareSum/times);
 		System.out.println("Merge Sort average swapping: "+counterSum/times);
 		System.out.println("Merge Sort temp array: "+tempASum/times);
-		System.out.println("Merge Sort Clock timeElapsed: "+timeElapsed+" ms");
-		System.out.println("Average: Clock time "+timeElapsed/times+" ms"+"\n");
+		switch(control) {
+		  case 0:
+			  System.out.println("Merge Sort Clock timeElapsed: "+timeElapsed+" ms");
+			  System.out.println("Average: Clock time "+timeElapsed/times+" ms"+"\n");
+		      break;
+		  case 1:
+			  System.out.println("Merge Sort Clock timeElapsed: "+timeElapsed+" ns");
+			  System.out.println("Average: Clock time "+timeElapsed/times+" ns"+"\n");
+		}
 		
 	}
 	
@@ -346,60 +374,61 @@ public class assign1 {
 		// TODO Auto-generated method stub
 		
 		
-		final int[][] test1 = new int[100][10000];
-		for(int i = 0;i<test1.length;i++) {
-			test1[i] = random(1,1000000,10000);
-		}
+	/*
+		//Testing
 		 
-		/*
 	    int[] test =  random(1,100,20);
 	    System.out.println(Arrays.toString(quickSort(test,new AtomicLong(0),new AtomicLong(0))));
 	    System.out.println(Arrays.toString(insertionSort(test,new AtomicLong(0),new AtomicLong(0))));
 	    System.out.println(Arrays.toString(mergeSort(test,new AtomicLong(0),new AtomicLong(0),new AtomicLong(0))));
 	    System.out.println(Arrays.toString(heapSort(test,new AtomicLong(0),new AtomicLong(0))));
 	    System.out.println(Arrays.toString(test));
-	
-		*/
+	*/
+		
 		
 		//part 1
-	/*
+/*
+	    final int[][] test1 = new int[100][10000];
+		for(int i = 0;i<test1.length;i++) {
+			test1[i] = random(1,1000000,10000);
+		}
+		 System.out.println("Result of array size 10,000");
 		testHeapSort(100,test1,0);
 		testQuickSort(100,test1,0);
 	    testMergeSort(100,test1,0);
 		testInsert(100,test1,0);
-*/
-	
+
+	*/
 		//part 2
 		
-	
-	
+	/*
+   
 		final int[][] test2 = new int[100][100000];
+		
 		for(int i = 0;i<test1.length;i++) {
 			test2[i] = random(1,1000000,100000);
 		}
-		
+	    System.out.println("Result of array size 100,000");
 		testQuickSort(100,test2,0);
 		testHeapSort(100,test2,0);
 		testMergeSort(100,test2,0);
 		testInsert(100,test2,0);
 
+	*/
 	
-		
-		//part2b 
+		//part 3 
 		/*
-		int[] testOne = test2[0]; 
-		System.out.println(Arrays.toString(testOne));
+		int[] testOne = random(1,1000000,100000);; 
 		int[] insert = insertionSort(testOne,new AtomicLong(0),new AtomicLong(0));
 		System.out.println(Arrays.equals(insert,testOne));
 		int[] quick = quickSort(insert,new AtomicLong(0),new AtomicLong(0));
 		int[] merge = mergeSort(insert,new AtomicLong(0),new AtomicLong(0),new AtomicLong(0));
-		//System.out.println(Arrays.equals(quick,merge));*/
-
+		System.out.println(Arrays.equals(quick,merge));
+		*/
+	
+		//part 4
 		
-		
-		//part 3
-		
-		/*
+		System.out.println("----Small arrays results-----------------");
 		final int[][] test16 = new int[100][16];
 		for(int i = 0;i<test16.length;i++) {
 			test16[i] = random(1,1000,16);
@@ -456,7 +485,7 @@ public class assign1 {
 		testInsert(100,test256,1);
 		
 		System.out.println("----Results of 256 elements-----------------");
-		*/
+		
 	}
 
 }
