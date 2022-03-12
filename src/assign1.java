@@ -374,117 +374,134 @@ public class assign1 {
 		// TODO Auto-generated method stub
 		
 		
-	/*
+	
 		//Testing
+		
+		switch(args[0]) {
+		  case "0":
+			    int[] test =  random(1,100,20);
+			    System.out.println(Arrays.toString(quickSort(test,new AtomicLong(0),new AtomicLong(0))));
+			    System.out.println(Arrays.toString(insertionSort(test,new AtomicLong(0),new AtomicLong(0))));
+			    System.out.println(Arrays.toString(mergeSort(test,new AtomicLong(0),new AtomicLong(0),new AtomicLong(0))));
+			    System.out.println(Arrays.toString(heapSort(test,new AtomicLong(0),new AtomicLong(0))));
+			    System.out.println(Arrays.toString(test));
+			    break;
+		  case "1":
+			    final int[][] test1 = new int[100][10000];
+				for(int i = 0;i<test1.length;i++) {
+					test1[i] = random(1,1000000,10000);
+				}
+				 System.out.println("Result of array size 10,000");
+				testHeapSort(100,test1,0);
+				testQuickSort(100,test1,0);
+			    testMergeSort(100,test1,0);
+				testInsert(100,test1,0);
+		      break;
+		  case "2":
+				final int[][] test2 = new int[100][100000];
+				
+				for(int i = 0;i<test2.length;i++) {
+					test2[i] = random(1,1000000,100000);
+				}
+			    System.out.println("Result of array size 100,000");
+				testQuickSort(100,test2,0);
+				testHeapSort(100,test2,0);
+				testMergeSort(100,test2,0);
+				testInsert(100,test2,0);
+		      break;
+		  case "3":
+				int[] testOne = random(1,1000000,100000);; 
+				int[] insert = insertionSort(testOne,new AtomicLong(0),new AtomicLong(0));
+				System.out.println(Arrays.equals(insert,testOne));
+				int[] quick = quickSort(insert,new AtomicLong(0),new AtomicLong(0));
+				int[] merge = mergeSort(insert,new AtomicLong(0),new AtomicLong(0),new AtomicLong(0));
+				System.out.println(Arrays.equals(quick,merge));
+		      break;
+		  case "4":
+			  System.out.println("----Small arrays results-----------------");
+				final int[][] test16 = new int[100][16];
+				for(int i = 0;i<test16.length;i++) {
+					test16[i] = random(1,1000,16);
+				}
+				
+				testHeapSort(100,test16,1);
+				testQuickSort(100,test16,1);
+			    testMergeSort(100,test16,1);
+				testInsert(100,test16,1);
+				
+				System.out.println("----Results of 16 elements-----------------");
+				
+				final int[][] test32 = new int[100][32];
+				for(int i = 0;i<test32.length;i++) {
+					test32[i] = random(1,1000,32);
+				}
+				
+				testHeapSort(100,test32,1);
+				testQuickSort(100,test32,1);
+			    testMergeSort(100,test32,1);
+				testInsert(100,test32,1);
+				
+				System.out.println("----Results of 32 elements-----------------");
+				
+				final int[][] test64 = new int[100][64];
+				for(int i = 0;i<test64.length;i++) {
+					test64[i] = random(1,1000,64);
+				}
+				testHeapSort(100,test64,1);
+				testQuickSort(100,test64,1);
+			    testMergeSort(100,test64,1);
+				testInsert(100,test64,1);
+				System.out.println("----Results of 64 elements-----------------");
+				
+				final int[][] test128 = new int[100][128];
+				for(int i = 0;i<test128.length;i++) {
+					test128[i] = random(1,1000,128);
+				}
+			
+				testHeapSort(100,test128,1);
+				testQuickSort(100,test128,1);
+			    testMergeSort(100,test128,1);
+				testInsert(100,test128,1);
+				
+				System.out.println("----Results of 128 elements-----------------");
+				final int[][] test256 = new int[100][256];
+				for(int i = 0;i<test256.length;i++) {
+					test256[i] = random(1,1000,256);
+				}
+				
+				testHeapSort(100,test256,1);
+				testQuickSort(100,test256,1);
+			    testMergeSort(100,test256,1);
+				testInsert(100,test256,1);
+				
+				System.out.println("----Results of 256 elements-----------------");
+		      break;
+		}
 		 
-	    int[] test =  random(1,100,20);
-	    System.out.println(Arrays.toString(quickSort(test,new AtomicLong(0),new AtomicLong(0))));
-	    System.out.println(Arrays.toString(insertionSort(test,new AtomicLong(0),new AtomicLong(0))));
-	    System.out.println(Arrays.toString(mergeSort(test,new AtomicLong(0),new AtomicLong(0),new AtomicLong(0))));
-	    System.out.println(Arrays.toString(heapSort(test,new AtomicLong(0),new AtomicLong(0))));
-	    System.out.println(Arrays.toString(test));
-	*/
+	
+	
 		
 		
 		//part 1
-/*
-	    final int[][] test1 = new int[100][10000];
-		for(int i = 0;i<test1.length;i++) {
-			test1[i] = random(1,1000000,10000);
-		}
-		 System.out.println("Result of array size 10,000");
-		testHeapSort(100,test1,0);
-		testQuickSort(100,test1,0);
-	    testMergeSort(100,test1,0);
-		testInsert(100,test1,0);
 
-	*/
+
+
 		//part 2
 		
-	/*
+	
    
-		final int[][] test2 = new int[100][100000];
-		
-		for(int i = 0;i<test1.length;i++) {
-			test2[i] = random(1,1000000,100000);
-		}
-	    System.out.println("Result of array size 100,000");
-		testQuickSort(100,test2,0);
-		testHeapSort(100,test2,0);
-		testMergeSort(100,test2,0);
-		testInsert(100,test2,0);
+	
 
-	*/
+	
 	
 		//part 3 
-		/*
-		int[] testOne = random(1,1000000,100000);; 
-		int[] insert = insertionSort(testOne,new AtomicLong(0),new AtomicLong(0));
-		System.out.println(Arrays.equals(insert,testOne));
-		int[] quick = quickSort(insert,new AtomicLong(0),new AtomicLong(0));
-		int[] merge = mergeSort(insert,new AtomicLong(0),new AtomicLong(0),new AtomicLong(0));
-		System.out.println(Arrays.equals(quick,merge));
-		*/
+	
+	
+
 	
 		//part 4
 		
-		System.out.println("----Small arrays results-----------------");
-		final int[][] test16 = new int[100][16];
-		for(int i = 0;i<test16.length;i++) {
-			test16[i] = random(1,1000,16);
-		}
 		
-		testHeapSort(100,test16,1);
-		testQuickSort(100,test16,1);
-	    testMergeSort(100,test16,1);
-		testInsert(100,test16,1);
-		
-		System.out.println("----Results of 16 elements-----------------");
-		
-		final int[][] test32 = new int[100][32];
-		for(int i = 0;i<test32.length;i++) {
-			test32[i] = random(1,1000,32);
-		}
-		
-		testHeapSort(100,test32,1);
-		testQuickSort(100,test32,1);
-	    testMergeSort(100,test32,1);
-		testInsert(100,test32,1);
-		
-		System.out.println("----Results of 32 elements-----------------");
-		
-		final int[][] test64 = new int[100][64];
-		for(int i = 0;i<test64.length;i++) {
-			test64[i] = random(1,1000,64);
-		}
-		testHeapSort(100,test64,1);
-		testQuickSort(100,test64,1);
-	    testMergeSort(100,test64,1);
-		testInsert(100,test64,1);
-		System.out.println("----Results of 64 elements-----------------");
-		
-		final int[][] test128 = new int[100][128];
-		for(int i = 0;i<test128.length;i++) {
-			test128[i] = random(1,1000,128);
-		}
-	
-		testHeapSort(100,test128,1);
-		testQuickSort(100,test128,1);
-	    testMergeSort(100,test128,1);
-		testInsert(100,test128,1);
-		
-		System.out.println("----Results of 128 elements-----------------");
-		final int[][] test256 = new int[100][256];
-		for(int i = 0;i<test256.length;i++) {
-			test256[i] = random(1,1000,256);
-		}
-		
-		testHeapSort(100,test256,1);
-		testQuickSort(100,test256,1);
-	    testMergeSort(100,test256,1);
-		testInsert(100,test256,1);
-		
-		System.out.println("----Results of 256 elements-----------------");
 		
 	}
 
